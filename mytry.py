@@ -47,8 +47,7 @@ def str_related(str):
         print('两个字符串相等')
     else:
         print(str+'2')
-        print('hello')
-        print('change')
+        print('change'+str)
 
 if __name__ == "__main__":
     json_read()
