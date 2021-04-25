@@ -43,7 +43,7 @@ def degree(name, grade):
             return {'code': 0, 'msg': "不合格"}
 
 def str_related(str):
-    if str is '20001':
+    if str is not '20001':
         print('相等')
     else:
         print('不相等')
