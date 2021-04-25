@@ -43,11 +43,10 @@ def degree(name, grade):
             return {'code': 0, 'msg': "不合格"}
 
 def str_related(str):
-    if str is not '20001':
-        print('两个字符串相等')
+    if str is '20001':
+        print('相等')
     else:
-        print(str+'2')
-        print('change'+str)
+        print('不相等')
 
 if __name__ == "__main__":
     json_read()
