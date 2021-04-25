@@ -48,6 +48,7 @@ def str_related(str):
     else:
         print(str+'2')
         print('hello')
+        print('change')
 
 if __name__ == "__main__":
     json_read()
