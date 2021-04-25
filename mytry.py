@@ -48,6 +48,7 @@ def str_related(str):
     else:
         print(str+'2')
         print('change'+str)
+        print('new branch')
 
 if __name__ == "__main__":
     json_read()
