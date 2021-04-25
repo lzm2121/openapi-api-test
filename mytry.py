@@ -46,7 +46,7 @@ def str_related(str):
     if str is not '20001':
         print('两个字符串相等')
     else:
-        print('不相等')
+        print(str+'2')
 
 if __name__ == "__main__":
     json_read()
