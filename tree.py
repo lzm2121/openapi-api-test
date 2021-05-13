@@ -36,3 +36,13 @@ class Tree:
             else:
                 cur.rchild = node
                 return
+
+    """层次遍历:利用队列实现"""
+    def breadth_travel(self):
+        queue = [self.root]
+
+
+if __name__ == "__main__":
+    tree = Tree()
+    tree.add(2)
+    tree.add(3)

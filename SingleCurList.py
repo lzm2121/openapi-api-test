@@ -1,9 +1,11 @@
+import sys
+
 """
 单向循环链表
 """
 class Node(object):
-    def __init__(self, node=None):
-        self.elem = node
+    def __init__(self, elem):
+        self.elem = elem
         self.next = None
 
 class SingleCurList(object):
@@ -11,6 +13,19 @@ class SingleCurList(object):
         self._head = node
         if node:
             node.next = node
+
+    """创建循环单链表"""
+    def BuildCirSingleList(self):
+        elem = input("输入节点的值：")
+        cur = self._head
+        cur = Node(cur)
+        while elem != '#':
+            elem = int(elem)
+            node = Node(elem)
+            cur.next = node
+            node.next = self._head
+            cur = cur.next
+            elem = input("输入节点的值：")
 
     """是否为空"""
     def is_empty(self):
@@ -84,46 +99,59 @@ class SingleCurList(object):
             node.next = cur.next
             cur.next = node
 
-    """查找结点"""
+    """查找节点"""
     def search(self, item):
         cur = self._head
         pos = 0
+        position = []
         if self.is_empty():
             return False
         while cur.next != self._head:
             if cur.elem == item:
-                print(pos, end=' ')
+                # print(pos, end=' ')
+                position.append(pos)
             pos += 1
             cur = cur.next
         if cur.elem == item:
-            print(pos, end=' ')
-        print(end='\n')
+            # print(pos, end=' ')
+            position.append(pos)
+        print(position)
+        return position
+        # print(end='\n')
 
     """删除节点"""
-    def remove(self, item):
-        count = 0
-        cur = self._head
-        pre = None
-        pos = self.search(item)
-        while cur.next != self._head:
-            if count in pos:
-                pre.next = cur.next
-            count += 1
-            pre.next = cur
-            cur = cur.next
+    # def remove(self, item):
+    #     cur = self._head
+    #     pre = None
+    #     if self.is_empty():
+    #         return 0
+    #     elif cur.next == self._head:
+    #         if cur.elem == item:
+    #             self._head = None
+    #     else:
+    #         while cur.next != self._head:
+    #             if cur.elem == item:
+    #                 pre.next = cur.next
+    #             pre = pre.next
+    #             cur = cur.next
+
+
 
 if __name__ == '__main__':
-    ll = SingleCurList()
-    print(ll.is_empty())
-    print(ll.length())
-    ll.add(1)
-    ll.append(2)
+    ll = SingleCurList(Node(0))
     ll.travel()
-    ll.add(3)
-    ll.travel()
-    ll.insert(2, 5)
-    ll.insert(3, 3)
-    ll.travel()
-    ll.search(3)
-    ll.remove(3)
-    ll.travel()
+    # ll.BuildCirSingleList()
+    # ll.travel()
+    # print(ll.is_empty())
+    # print(ll.length())
+    # ll.add(1)
+    # ll.append(2)
+    # ll.travel()
+    # ll.add(3)
+    # ll.travel()
+    # ll.insert(2, 5)
+    # ll.insert(3, 3)
+    # ll.travel()
+    # ll.search(3)
+    # ll.remove(3)
+    # ll.travel()
