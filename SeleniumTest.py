@@ -1,5 +1,5 @@
 """
-自动化打开chrom
+自动化打开chrome
 """
 import sys
 from selenium import webdriver
@@ -182,8 +182,62 @@ class Selenium_Test(object):
         sleep(5)
         wd.quit()
 
+    def Select_Radio_Checkbox_Select(self):
+        wd = webdriver.Chrome(r'D:\Chrome\chromedriver_win32\chromedriver.exe')
+        wd.implicitly_wait(10)
+        wd.get('http://cdn1.python3.vip/files/selenium/test2.html')
 
+        # radio 单选框
+        element = wd.find_element_by_css_selector('#s_radio input[checked="checked"]')
+        print(element.get_attribute('value'))
 
+        element = wd.find_element_by_css_selector('#s_radio input[value="小江老师"]')
+        element.click()
+
+        # checkbox 复选框
+        checkbox = wd.find_elements_by_css_selector('#s_checkbox input[checked="checked"]')
+        for box in checkbox:
+            box.click()
+
+        wd.find_element_by_css_selector('#s_checkbox input[value="小雷老师"]').click()
+
+        # select选择框
+        # 导入select类
+        from selenium.webdriver.support.ui import Select
+        # 创建Select对象,单选框
+        select = Select(wd.find_element_by_css_selector('#ss_single'))
+        # 通过select对象选中小雷老师
+        select.select_by_value('小雷老师')
+
+        # 多选框
+        select = Select(wd.find_element_by_css_selector('#ss_multi'))
+        # 清除所有已经选中的选项
+        select.deselect_all()
+        # 选择小雷老师和小凯老师
+        select.select_by_value("小雷老师")
+        select.select_by_visible_text("小凯老师")
+
+        from time import sleep
+        sleep(5)
+
+        wd.quit()
+
+    def Other(self):
+        wd = webdriver.Chrome(r'D:\Chrome\chromedriver_win32\chromedriver.exe')
+        wd.implicitly_wait(10)
+        wd.get('https://www.baidu.com/')
+
+        from selenium.webdriver.common.action_chains import ActionChains
+        ac = ActionChains(wd)  # webdriver对象作为参数传入
+
+        # 鼠标移动到元素上
+        ac.move_to_element(
+            wd.find_element_by_css_selector('[name="tj_briicon"]')
+        ).perform()
+
+        from time import sleep
+        sleep(5)
+        wd.quit()
 
 if __name__ == '__main__':
     selenium_test = Selenium_Test()
@@ -194,4 +248,6 @@ if __name__ == '__main__':
     # selenium_test.Select_Element_By_CSS_Selector()
     # selenium_test.Select_Element_By_CSS_Selector_nth()
     # selenium_test.Select_Frame()
-    selenium_test.Select_Window()
+    # selenium_test.Select_Window()
+    # selenium_test.Select_Radio_Checkbox_Select()
+    selenium_test.Other()
