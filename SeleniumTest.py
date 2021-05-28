@@ -239,6 +239,20 @@ class Selenium_Test(object):
         sleep(5)
         wd.quit()
 
+    def Xpath(self):
+        wd = webdriver.Chrome(r'D:\Chrome\chromedriver_win32\chromedriver.exe')
+        wd.implicitly_wait(5)
+        wd.get('http://cdn1.python3.vip/files/selenium/test2.html')
+        elem = wd.find_elements_by_xpath('//div')
+        for ele in elem:
+            print(ele.get_attribute('outerHTML'))
+
+        from time import sleep
+        sleep(5)
+
+        wd.quit()
+
+
 if __name__ == '__main__':
     selenium_test = Selenium_Test()
     # selenium_test.Baidu_Select_Element_By_ID()
@@ -250,4 +264,5 @@ if __name__ == '__main__':
     # selenium_test.Select_Frame()
     # selenium_test.Select_Window()
     # selenium_test.Select_Radio_Checkbox_Select()
-    selenium_test.Other()
+    # selenium_test.Other()
+    selenium_test.Xpath()
